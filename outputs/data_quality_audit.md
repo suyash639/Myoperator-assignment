@@ -1,6 +1,6 @@
 # Data Quality and Reliability Audit (D4): TalentFlow / Acme Corp
 
-**Version:** Phase 2.2 (corrected 2026-11-24). Corrections are listed in `phase2_2_correction_report.md`.
+**Version:** Phase 2.2 (corrected 2026-11-24). Corrections are listed in phase2_2_correction_report (archived process report; summarised in audit/investigation_log.md).
 
 **Snapshot dates (DEC-020):**
 

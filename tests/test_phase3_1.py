@@ -7,7 +7,7 @@ import pytest
 
 from src import duplicate_warning as dw, offer_lifecycle as lc, offer_metrics, phase3_plan
 from src.data import load
-from tests.test_phase2 import base_world, rid, snap
+from tests.test_phase2 import base_world, snap
 
 HAVE_DATA = Path("data/raw/manifest.json").is_file()
 T = "2026-03-10T12:00:00Z"

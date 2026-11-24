@@ -20,8 +20,8 @@ from src import phase3_plan as plan
 from src.offer_lifecycle import transition_table_md
 
 OUT, AUDIT = Path("outputs"), Path("audit")
-DOCS = ["phase3_product_strategy.md", "q3_roadmap.md", "offer_acceptance_metric_spec.md",
-        "customer_validation_plan.md", "phase3_review.md", "phase3_1_review.md", "phase3_2_final_review.md"]
+DOCS = ["phase3_product_strategy.md", "q3_roadmap.md", "offer_acceptance_metric_spec.md"]
+CVP = "final/Customer_Validation_Plan.md"   # customer-question coverage is checked against the final plan
 
 
 def rd(name):
@@ -194,7 +194,7 @@ def check() -> list[str]:
             fail.append(f"initiative {b} not traced")
 
     # 5. customer questions
-    cvp = (OUT / "customer_validation_plan.md").read_text()
+    cvp = (OUT / CVP).read_text()
     covered = set(re.findall(r"^\| (C-\d{2}) \|", cvp, re.M))
     if covered != cq:
         fail.append(f"validation plan missing {sorted(cq - covered)}")

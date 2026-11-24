@@ -160,14 +160,7 @@
 ---
 
 ## Decisions for the PM, not the customer
-These are listed so they aren't confused with customer questions. None has been taken.
-1. Ratify or amend DEC-014 (acceptance = decided offers only).
-2. Primary attribution for Claim A: V0 as recorded, V2 referrer override, or V4 strict referral.
-3. Reporting standard: observed rate + sensitivity range + one-record swing, instead of Wilson intervals (RV-05).
-4. As-of date: keep 2026-08-27 as *Proposed* pending C-01 (RV-06).
-5. Date source for durations: keep DEC-015, reverse it, or report both (RV-03).
-6. Whether to add a mature-cohort funnel (applications 2025-Q3 to 2026-Q1).
-7. Whether to apply corrections P1–P13 in `phase2_1_review.md` §5.
+The seven PM decisions originally listed here were all **taken in Phase 2.2**: DEC-016 to DEC-021 and DEC-023 (see `../audit/decision_log.md`). They are no longer open.
 
 ---
 

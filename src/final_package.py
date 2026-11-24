@@ -223,7 +223,7 @@ def gen_blocks() -> dict[str, str]:
 
     def short(t, n=230):
         t = re.sub(r"\s+", " ", t)
-        t = public_redact(t)
+        t = archive_refs(public_redact(t))
         return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + " …"
 
     def cat(d):
@@ -303,6 +303,18 @@ def _local_secret_values() -> list[tuple[str, str]]:
         from src.airtable_client import token_fingerprint
         out.append((token_fingerprint(vals["AIRTABLE_TOKEN"]), "(fingerprint recorded locally only)"))
     return out
+
+
+ARCHIVED = ("assignment_completeness.md", "phase2_1_review.md", "phase2_2_correction_report.md", "phase3_review.md",
+            "phase3_1_review.md", "phase3_2_final_review.md", "customer_validation_plan.md")
+
+
+def archive_refs(t: str) -> str:
+    """Point references to the archived process-history reports at where their content now lives."""
+    for name in ARCHIVED:
+        t = re.sub(rf"`?(?:outputs/)?{re.escape(name)}`?(?: §\d+)?",
+                   f"{name.replace('.md', '')} (archived process report; summarised in audit/investigation_log.md)", t)
+    return t
 
 
 def public_redact(t: str) -> str:

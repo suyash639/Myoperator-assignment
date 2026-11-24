@@ -61,7 +61,7 @@ uv run pytest                             # full test suite (offline)
 | Allocation, scores, success metrics | `../phase3_capacity_allocation.csv`, `../phase3_prioritisation_scores.csv`, `../product_success_metrics.csv` | `src/phase3_plan.py` |
 | Traceability | `../decision_traceability.csv` (Phase 2), `../phase3_decision_traceability.csv` (Phase 3) | `src/traceability.py`, `src/phase3_plan.py` |
 | Full strategy reasoning | `../phase3_product_strategy.md`, `../q3_roadmap.md`, `../offer_acceptance_metric_spec.md` | — |
-| Corrections history | `../phase2_1_review.md`, `../phase2_2_correction_report.md`, `../phase3_1_review.md`, `../phase3_2_final_review.md` | — |
+| Corrections history | Summarised in `Claude_Code_Transcript.md` and `../../audit/investigation_log.md` (INV-008 to INV-012); the intermediate review reports are archived locally and not part of the submission | — |
 | Decisions and assumptions | `../../audit/decision_log.md`, `../../audit/assumptions_register.md`, `../../audit/investigation_log.md` | — |
 | Tests | `../../tests/` (6 files) | `uv run pytest` |
 

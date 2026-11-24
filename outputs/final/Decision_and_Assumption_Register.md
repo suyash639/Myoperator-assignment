@@ -27,7 +27,7 @@
 | DEC-019 | **Dates.** Neither the Interviews/Offers tables nor the Application copied fields are universally authoritative. Both are retained; copy-vs-source **contradictions** (DQ-15) and **impossible chronology** (DQ-13) are flagged … | PM-approved (Phase 2.2) | Active. **Supersedes DEC-015** |  |
 | DEC-020 | **Snapshot dates.** Extraction date = 2026-11-24. Apparent bulk-import timestamp = 2026-08-27 16:39–16:40 UTC. Neither is claimed as the business reporting cutoff. 2026-08-27 is used as a **provisional cutoff** for ages, with … | PM-approved (Phase 2.2) | Active. **Supersedes DEC-010** |  |
 | DEC-021 | **Funnel.** Keep the full-snapshot funnel. Add a completed-cohort funnel for applications 2025-07-01..2026-03-31 only after verifying sufficiency; document eligibility and exclusion rules. | PM-approved (Phase 2.2) | Active. Sufficiency verified; rules in DEC-022 |  |
-| DEC-023 | Approve factual corrections supported by independent evidence; do not approve unsupported interpretations automatically. Classification of Phase 2.1 corrections P1–P13 in `outputs/phase2_2_correction_report.md`. | PM-approved (Phase 2.2) | Active |  |
+| DEC-023 | Approve factual corrections supported by independent evidence; do not approve unsupported interpretations automatically. Classification of Phase 2.1 corrections P1–P13 in phase2_2_correction_report (archived process report; … | PM-approved (Phase 2.2) | Active |  |
 | DEC-038 | **Renege treatment.** The primary acceptance metric (OAM-01) measures whether an offer was accepted **at the decision event**. A later candidate withdrawal (renege) or company rescission does not erase that acceptance. … | **PM-approved** (Phase 3.2 instruction) | Active |  |
 <!-- /GEN:dec_approved -->
 

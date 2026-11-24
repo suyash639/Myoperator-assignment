@@ -2,7 +2,7 @@
 
     uv run python -m src.review_phase2_1
 
-Re-derives, from the raw snapshot only, the evidence used in outputs/phase2_1_review.md. It does
+Re-derives, from the raw snapshot only, the evidence used by the Phase 2.1 independent review. It does
 NOT import src.metrics or src.audit, so it is an independent re-implementation of the counts it
 re-checks. It modifies no existing output and never writes to data/raw (raw checksums are verified
 by src.data.load and re-hashed before and after).

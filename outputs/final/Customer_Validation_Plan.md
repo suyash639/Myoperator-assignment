@@ -5,7 +5,7 @@
 - It cannot show intent, policy, permissions or what happens outside TalentFlow. Those need Acme.
 - **No committed Q3 scope waits on these answers.** They gate the pilot release, conditional scope, metric labels and the Q4 job-board decision.
 
-**Source:** `../open_questions_for_customer.md` (C-01 to C-18) and `../customer_validation_plan.md`.
+**Source:** `../open_questions_for_customer.md` (C-01 to C-18, with full evidence).
 
 ## Priority 1: blocks implementation or pilot release
 

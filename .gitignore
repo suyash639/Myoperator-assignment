@@ -52,3 +52,6 @@ transcripts/raw/
 
 # --- Public submission staging (separate git repo; never part of this working repo) ---
 release/
+
+# --- Archived process-history reports (local only; superseded by outputs/final/) ---
+archive/

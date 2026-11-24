@@ -32,6 +32,24 @@ Evidence-backed answer to the TalentFlow Q3 product exercise:
 | `audit/` | Investigation log, decision log, assumptions register |
 | `data/raw/`, `data/processed/`, `logs/`, `outputs/private/` | **Empty placeholders.** Customer data and logs are never published |
 
+## Code map (`src/`)
+| Stage | Modules |
+|---|---|
+| 1. Extraction (read-only, the only network step) | `airtable_client.py`, `extract.py`, `validate_extraction.py` |
+| 2. Analysis and data quality | `data.py` (checksum-verified loader), `profile.py`, `integrity.py`, `audit.py`, `metrics.py`, `run_phase2.py`, `verify_sql.py` (+ `queries/verify_phase2.sql`), `review_phase2_1.py`, `traceability.py` |
+| 3. Product decisions and metric spec | `offer_metrics.py` (event-time D3 metrics), `offer_lifecycle.py`, `duplicate_warning.py`, `inactivity.py` (reference models), `phase3_plan.py`, `phase3_1_evidence.py`, `phase3_checks.py` |
+| 4. Packaging and QA | `final_package.py`, `render_pdf.py`, `final_qa.py`, `build_submission.py` |
+
+## Supporting evidence (`outputs/`)
+| File | Role |
+|---|---|
+| `data_quality_audit.md` | Full D4 data-quality audit (29 issues) |
+| `phase2_summary.md` | Claim verification and insights appendix |
+| `phase3_product_strategy.md`, `q3_roadmap.md` | Full prioritisation rationale and sprint plan behind the final roadmap |
+| `offer_acceptance_metric_spec.md` | Authoritative offer-metric specification (lifecycle rules, edge cases) |
+| `open_questions_for_customer.md` | All customer questions with evidence |
+| `*.csv` | Machine-readable evidence every number traces to |
+
 ## Setup
 ```bash
 uv sync                    # Python 3.11, pinned dependencies from uv.lock (or: pip install -r requirements.txt)

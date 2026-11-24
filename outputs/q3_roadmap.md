@@ -31,7 +31,7 @@
 | Item | Owner | Needed by | If missing |
 |---|---|---|---|
 | Engineering validation of the component estimates (ASM-022) | Engineering lead | Sprint 1 planning | Apply the cut line (§4) |
-| Send P1 and P2 customer questions (`customer_validation_plan.md`) | PM | Week 0 | Committed scope proceeds; conditional scope stays out |
+| Send P1 and P2 customer questions (customer_validation_plan (archived process report; summarised in audit/investigation_log.md)) | PM | Week 0 | Committed scope proceeds; conditional scope stays out |
 | UX sketches: pending-offer queue, inactivity review queue, intake form | PM / design (not engineering capacity) | Sprint 2 start | FE work uses existing patterns |
 | Live-data baseline snapshot (the Phase 2 snapshot is about 3 months old at extraction) | Data/analytics, inside B2.3 and B1.3 | Sprint 3 | Targets stay "provisional" |
 

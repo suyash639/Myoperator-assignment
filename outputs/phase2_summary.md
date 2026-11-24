@@ -1,6 +1,6 @@
 # Phase 2 Summary: Profiling, Data Quality, VP Claim Verification
 
-**Version:** Phase 2.2 (corrected 2026-11-24). See `phase2_2_correction_report.md` for every change from the original Phase 2 text.
+**Version:** Phase 2.2 (corrected 2026-11-24). See phase2_2_correction_report (archived process report; summarised in audit/investigation_log.md) for every change from the original Phase 2 text.
 
 **Scope:** analysis only. No roadmap decisions; those are Phase 3.
 
@@ -225,7 +225,7 @@ These are observations for Phase 3, not decisions.
 - **Reports:**
   - `outputs/data_quality_audit.md`
   - `outputs/phase2_summary.md`
-  - `outputs/phase2_2_correction_report.md`
+  - phase2_2_correction_report (archived process report; summarised in audit/investigation_log.md)
 - **Data:**
   - `outputs/findings_table.csv`
   - `outputs/dq_issues.csv`

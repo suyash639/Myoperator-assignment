@@ -9,7 +9,7 @@
 **Evidence base:** the corrected Phase 2.2 outputs: `metric_calculations.csv` (M-*), `dq_issues.csv` (DQ-*) and `offer_metric_baseline.csv` (OAM-*, the D3 reference implementation).
 
 **Status:**
-- These are **PM recommendations awaiting your approval.** They are logged as DEC-025 to DEC-031 (*Proposed*), refined in Phase 3.1 by DEC-032 to DEC-037 (see `phase3_1_review.md`).
+- These are **PM recommendations awaiting your approval.** They are logged as DEC-025 to DEC-031 (*Proposed*), refined in Phase 3.1 by DEC-032 to DEC-037 (see `../audit/decision_log.md`).
 - **Effort figures are PM planning estimates, not engineering estimates** (DEC-008, ASM-022). Engineering must validate them before sprint 1 is committed.
 
 > **Evidence discipline.** Every recommendation below states:
@@ -258,7 +258,7 @@ The component level is in `phase3_capacity_allocation.csv`, and the sprint view 
 
 **Existing assumptions still relied on:** ASM-007, ASM-008, ASM-013, ASM-021.
 
-**Customer validation:** see `customer_validation_plan.md`. No committed scope depends on an unanswered question.
+**Customer validation:** see customer_validation_plan (archived process report; summarised in audit/investigation_log.md). No committed scope depends on an unanswered question.
 
 ## 8. Success metrics, pilot and experiment design
 
