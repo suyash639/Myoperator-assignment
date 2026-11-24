@@ -1,0 +1,82 @@
+table,field,records,inferred_type,present,missing,pct_missing,blank_strings,distinct,unique_ratio,min,max,top_values,duplicate_values,notes
+Departments,Code,8,text,8,0,0.0,0,8,1.0,,,FIN=1; PRD=1; POP=1; DAT=1; CS=1; ENG=1; MKT=1; SLS=1,0,
+Departments,Headcount Budget,8,number,8,0,0.0,0,8,1.0,7,39,,0,
+Departments,Job Openings,8,link,8,0,0.0,0,8,1.0,,,,0,cardinality 3:8
+Departments,Location,8,text,8,0,0.0,0,4,0.5,,,Noida=4; Bengaluru=2; Remote=1; Mumbai=1,2,
+Departments,Name,8,text,8,0,0.0,0,8,1.0,,,Finance=1; Product=1; People Operations=1; Data=1; Customer Support=1; Engineering=1; Marketing=1; Sales=1,0,
+Departments,People,8,link,8,0,0.0,0,8,1.0,,,,0,"cardinality 1:2, 2:6"
+People,Applications as Recruiter,14,link,4,10,71.4,0,4,1.0,,,,0,"cardinality 31:1, 96:1, 110:1, 113:1"
+People,Department,14,link,14,0,0.0,0,8,0.571,,,,6,cardinality 1:14
+People,Full Name,14,text,14,0,0.0,0,14,1.0,,,,0,personal/free-text field: values suppressed
+People,Interviews,14,link,6,8,57.1,0,6,1.0,,,,0,"cardinality 18:1, 23:1, 25:1, 30:1, 31:1, 33:1"
+People,Joined On,14,date,14,0,0.0,0,14,1.0,2021-08-20,2025-06-08,,0,
+People,Referrals Made,14,link,12,2,14.3,0,12,1.0,,,,0,"cardinality 1:3, 2:4, 3:4, 4:1"
+People,Reqs as Hiring Manager,14,link,4,10,71.4,0,4,1.0,,,,0,"cardinality 3:1, 4:1, 8:1, 9:1"
+People,Reqs as Recruiter,14,link,4,10,71.4,0,4,1.0,,,,0,"cardinality 2:1, 6:1, 7:1, 9:1"
+People,Role,14,text,14,0,0.0,0,3,0.214,,,Interviewer=6; Recruiter=4; Hiring Manager=4,3,
+People,Work Email,14,text,14,0,0.0,0,14,1.0,,,,0,personal/free-text field: values suppressed
+Job Openings,Applications,24,link,24,0,0.0,0,24,1.0,,,,0,"cardinality 2:1, 4:1, 5:2, 6:2, 7:2, 8:1, 10:1, 12:2, 13:1, 14:1, 16:1, 17:1, 18:1, 19:2, 21:1, 23:2, 30:1, 53:1"
+Job Openings,Department,24,link,24,0,0.0,0,8,0.333,,,,8,cardinality 1:24
+Job Openings,Employment Type,24,text,24,0,0.0,0,2,0.083,,,Full-time=20; Contract=4,2,
+Job Openings,Headcount,24,number,24,0,0.0,0,3,0.125,1,3,,3,
+Job Openings,Hiring Manager,24,link,24,0,0.0,0,4,0.167,,,,4,cardinality 1:24
+Job Openings,Level,24,text,24,0,0.0,0,4,0.167,,,Senior=8; Junior=8; Mid=5; Lead=3,4,
+Job Openings,Location,24,text,24,0,0.0,0,4,0.167,,,Mumbai=8; Bengaluru=7; Noida=5; Remote=4,4,
+Job Openings,Opened On,24,date,24,0,0.0,0,24,1.0,2025-03-19,2026-05-14,,0,
+Job Openings,Recruiter,24,link,24,0,0.0,0,4,0.167,,,,4,cardinality 1:24
+Job Openings,Req ID,24,text,24,0,0.0,0,24,1.0,,,REQ-2025-013=1; REQ-2025-005=1; REQ-2025-004=1; REQ-2025-015=1; REQ-2025-024=1; REQ-2026-022=1; REQ-2025-020=1; REQ-2025-007=1,0,
+Job Openings,Salary Band Max,24,number,24,0,0.0,0,4,0.167,800000,4500000,,4,
+Job Openings,Salary Band Min,24,number,24,0,0.0,0,4,0.167,400000,2800000,,4,
+Job Openings,Status,24,text,24,0,0.0,0,4,0.167,,,Open=11; Filled=8; On Hold=3; Cancelled=2,4,
+Job Openings,Target Close,24,date,24,0,0.0,0,24,1.0,2025-07-01,2026-09-04,,0,
+Job Openings,Title,24,text,24,0,0.0,0,21,0.875,,,Junior Content Marketer=2; HR Generalist=2; Enterprise AE=2; Finance Manager=1; Financial Analyst=1; Junior Associate Product Manager=1; Data Engineer=1; Brand Manager=1,3,
+Candidates,Applications,300,link,300,0,0.0,0,300,1.0,,,,0,"cardinality 1:250, 2:50"
+Candidates,Candidate ID,300,text,300,0,0.0,0,300,1.0,,,,0,
+Candidates,City,300,text,300,0,0.0,0,7,0.023,,,Pune=53; Remote=43; Mumbai=43; Hyderabad=42; Chennai=40; Bengaluru=40; Noida=39,7,
+Candidates,Created On,300,date,300,0,0.0,0,230,0.767,2025-03-01,2026-08-30,,59,
+Candidates,Current CTC,300,number,300,0,0.0,0,163,0.543,300000,4510000,,72,
+Candidates,Current Company,300,text,300,0,0.0,0,18,0.06,,,Basalt Energy=31; Marigold Foods=21; Meridian Health=21; Parable Systems=21; Silverpine Analytics=19; Arcadia Retail=18; Zenlytics=18; Bluestone Labs=18,18,
+Candidates,Email,300,text,300,0,0.0,0,300,1.0,,,,0,personal/free-text field: values suppressed
+Candidates,Expected CTC,300,number,300,0,0.0,0,199,0.663,286858,5310000,,70,
+Candidates,Full Name,300,text,300,0,0.0,0,294,0.98,,,,6,personal/free-text field: values suppressed
+Candidates,Notes,300,text,237,63,21.0,0,7,0.03,,,,7,personal/free-text field: values suppressed
+Candidates,Notice Period Days,300,number,300,0,0.0,0,5,0.017,0,90,,5,
+Candidates,Phone,300,text,300,0,0.0,0,294,0.98,,,,6,personal/free-text field: values suppressed
+Candidates,Source,300,text,300,0,0.0,0,6,0.02,,,Job Board=191; Agency=35; LinkedIn=31; Career Site=31; Referral=8; Campus=4,6,
+Candidates,Years Experience,300,number,300,0,0.0,0,102,0.34,0,17.1,,70,
+Applications,Application ID,350,text,350,0,0.0,0,346,0.989,,,,4,
+Applications,Applied On,350,date,350,0,0.0,0,217,0.62,2025-05-06,2026-08-27,,86,
+Applications,Candidate,350,link,350,0,0.0,0,300,0.857,,,,50,cardinality 1:350
+Applications,Closed On,350,date,245,105,30.0,0,163,0.665,2025-05-20,2026-08-17,,61,
+Applications,Final Interview On,350,date,50,300,85.7,0,43,0.86,2025-09-11,2026-08-02,,6,
+Applications,First Interview On,350,date,143,207,59.1,0,105,0.734,2025-08-29,2026-08-06,,27,
+Applications,Interviews,350,link,143,207,59.1,0,143,1.0,,,,0,"cardinality 1:126, 2:17"
+Applications,Offered On,350,date,36,314,89.7,0,35,0.972,2025-10-14,2026-08-07,,1,
+Applications,Offers,350,link,36,314,89.7,0,36,1.0,,,,0,cardinality 1:36
+Applications,Opening,350,link,350,0,0.0,0,24,0.069,,,,24,cardinality 1:350
+Applications,Recruiter,350,link,350,0,0.0,0,4,0.011,,,,4,cardinality 1:350
+Applications,Referred By,350,link,27,323,92.3,0,12,0.444,,,,9,cardinality 1:27
+Applications,Rejection Reason,350,text,218,132,37.7,0,7,0.032,,,Skills Mismatch=49; Culture Fit=47; Better Candidate=45; Comp Expectation=26; Position Cancelled=18; No Show=18; Withdrew=15,7,
+Applications,Screened On,350,date,279,71,20.3,0,177,0.634,2025-05-08,2026-08-13,,64,
+Applications,Stage,350,text,350,0,0.0,0,7,0.02,,,Rejected=200; Applied=45; Screening=32; Hired=26; Interview=23; Withdrawn=14; Offer=10,7,
+Applications,Status,350,text,350,0,0.0,0,2,0.006,,,Closed=245; Active=105,2,
+Interviews,Application,160,link,160,0,0.0,0,143,0.894,,,,17,cardinality 1:160
+Interviews,Completed On,160,date,142,18,11.2,0,103,0.725,2025-08-10,2026-07-30,,31,
+Interviews,Feedback,160,text,142,18,11.2,0,12,0.085,,,,12,personal/free-text field: values suppressed
+Interviews,Interview ID,160,text,160,0,0.0,0,160,1.0,,,,0,
+Interviews,Interviewer,160,link,160,0,0.0,0,6,0.037,,,,6,cardinality 1:160
+Interviews,Outcome,160,text,160,0,0.0,0,4,0.025,,,Completed=138; No Show=10; Cancelled=7; Rescheduled=5,4,
+Interviews,Recommendation,160,text,142,18,11.2,0,4,0.028,,,No Hire=48; Strong No Hire=39; Hire=34; Strong Hire=21,4,
+Interviews,Round,160,text,160,0,0.0,0,5,0.031,,,Screen=74; Technical 1=69; Bar Raiser=7; Hiring Manager=7; Technical 2=3,5,
+Interviews,Scheduled On,160,date,160,0,0.0,0,116,0.725,2025-08-10,2026-08-06,,34,
+Interviews,Score,160,number,142,18,11.2,0,39,0.275,1,5,,33,
+Offers,Application,36,link,36,0,0.0,0,36,1.0,,,,0,cardinality 1:36
+Offers,Base CTC,36,number,36,0,0.0,0,34,0.944,440000,4180000,,2,
+Offers,Decision On,36,date,35,1,2.8,0,34,0.971,2025-10-17,2026-08-20,,1,
+Offers,Decline Reason,36,text,5,31,86.1,0,3,0.6,,,Counter Offer=3; Location=1; Compensation=1,1,
+Offers,Joining Bonus,36,number,36,0,0.0,0,3,0.083,0,100000,,3,
+Offers,Offer ID,36,text,36,0,0.0,0,36,1.0,,,,0,
+Offers,Offered On,36,date,36,0,0.0,0,35,0.972,2025-10-14,2026-08-07,,1,
+Offers,Proposed Start Date,36,date,36,0,0.0,0,34,0.944,2025-11-07,2026-10-01,,1,
+Offers,Status,36,text,36,0,0.0,0,3,0.083,,,Accepted=26; Pending=5; Declined=5,3,
+Findings,(no records),0,,0,0,,0,0,,,,,0,"Table is empty (HTTP 200, zero records)"

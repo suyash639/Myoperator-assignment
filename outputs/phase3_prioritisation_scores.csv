@@ -1,0 +1,9 @@
+candidate_id,initiative,decision,user_value,evidence_strength,business_impact,time_to_value,effort,delivery_risk,dependency_risk,weighted_score,equal_weight_score,score_without_effort,weighted_rank,equal_weight_rank,rank_without_effort
+B1,Offer lifecycle integrity and acceptance reporting,Build,4,5,5,4,3,4,4,4.2,4.14,4.41,1,1,1
+B2,Pipeline hygiene: inactivity flags and opening-status review,Build,4,3,4,4,3,4,3,3.55,3.57,3.65,3,3,3
+B3,Source attribution integrity and intake instrumentation,Build,3,5,4,3,4,4,3,3.8,3.71,3.76,2,2,2
+N1,Job-board integration (new or deeper board connectors),Non-build (defer pending validation),2,1,2,2,1,2,1,1.55,1.57,1.65,8,8,8
+N2,"Offer-acceptance improvement tooling (comp intelligence, candidate nudges)",Non-build,2,1,2,2,2,3,2,1.9,2.0,1.88,7,7,7
+N3,Referral programme features,Non-build,2,1,2,3,3,4,3,2.35,2.57,2.24,6,5,6
+X1,Interview scheduling and feedback-latency tooling,Backlog (not prioritised),3,2,3,3,2,3,2,2.55,2.57,2.65,5,6,4
+X2,Department cycle-time analytics,Backlog (not prioritised),2,1,2,4,4,4,3,2.6,2.86,2.35,4,4,5

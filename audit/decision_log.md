@@ -1,0 +1,116 @@
+# Decision Log
+
+Decisions taken, who approved them, the alternatives considered and the evidence behind them.
+**Append-only:** historical IDs and decision text are preserved; superseded decisions are marked, not deleted.
+Restructured in Phase 2.2 (2026-11-24) to add approval type, alternatives and evidence columns (PM instruction I).
+
+**Approval types**
+- **PM-approved**: explicitly decided or instructed by the PM.
+- **PM instruction (implemented)**: the analyst's implementation of an explicit PM instruction.
+- **Analyst proposal**: proposed by the analyst, *not* PM-approved; must not be treated as ratified.
+- **Analyst process**: tooling or QC choice with no effect on any metric value.
+
+## A. PM-approved decisions
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-001 | 2026-11-24 | Populate `.gitignore` before `git init`; exclude credentials, `.venv`, `data/raw`, `data/processed`, `logs`, `outputs/private`, raw session transcripts (`transcripts/raw/`, `*.jsonl`). | PM-approved (Phase 0 message) | git init first, then add ignores (rejected: leak window) | `.gitignore` was empty (INV-000) | Active |
+| DEC-002 | 2026-11-24 | Local git only; no remote, no push. | PM-approved | Private remote (rejected by PM) | Customer data and credentials stay local | Active |
+| DEC-003 | 2026-11-24 | uv-managed env, Python 3.11 pinned, exact dependency pins in `pyproject.toml` + `uv.lock`; `requirements.txt` exported. | PM-approved | System Python 3.9.6; pip + requirements only | Reproducibility (INV-000) | Active |
+| DEC-004 | 2026-11-24 | DuckDB SQL (`queries/*.sql`) as independent verification of headline metrics. *Wording corrected in Phase 2.2: the primary implementation is plain Python, not pandas (pandas is pinned but unused).* | PM-approved | Second Python implementation; manual spot checks | Two independent implementations; mismatch blocks sign-off | Active (scope extended by DEC-023) |
+| DEC-005 | 2026-11-24 | Airtable client GET-only, enforced in code; credentials only from environment; tokens never logged. | PM-approved | — (PM requirement) | Read-only access; credential safety | Active |
+| DEC-007 | 2026-11-24 | Metric definitions written before metrics are computed. | PM-approved | Compute first, define after (rejected: risks fitting to VP numbers) | Avoids fitting definitions to the VP's figures | Active |
+| DEC-008 | 2026-11-24 | No engineering estimates invented; effort figures are provisional assumptions requiring engineering validation. | PM-approved | Analyst estimates (rejected by PM) | Data cannot supply effort | Active |
+| DEC-009 | 2026-11-24 | Use the original assignment token (fingerprint recorded locally only) for the live extraction; no rotation. | PM-approved | Rotate token first (analyst suggestion, declined by PM) | Mitigations: GET-only client, token never logged/committed, leak scans clean | Active |
+| DEC-016 | 2026-11-24 | **Offer acceptance.** Provisional primary metric = **decided-offer acceptance, offer-level**: Accepted / (Accepted + Declined) = 26/31 = 83.9% (M-B1). Keep 26/36 = 72.2% as the **all-issued-offer ratio** (M-B0). Offer-level and candidate-level (M-B4, 24/28) metrics are always labelled and never mixed. | PM-approved (Phase 2.2) | (a) all-issued ratio as primary (VP's basis); (b) stale-Pending-as-expired M-B3; (c) candidate-level M-B4; (d) excluding offers to already-hired candidates M-B10 | Pending ≠ rejection; 4/5 Pending carry decision dates (DQ-06); 4 candidates hold 2 offers. Final D3 spec still to be written | Active (provisional). **Supersedes DEC-014** |
+| DEC-017 | 2026-11-24 | **Channel attribution.** Primary reported attribution = `Candidates.Source`, labelled **"Source as recorded"**. Alternatives (referrer override M-A2, strict referral M-A9, distinct candidates M-A1/M-A3, duplicates merged M-A8/M-A10) are shown separately as definition sensitivity. **Referral is not treated as a proven high-performing channel.** | PM-approved (Phase 2.2) | Referrer override as primary; strict referral as primary; merged first-touch as primary | Source contradicts Referred By on 34/350 applications (DQ-01); 7/7 Referral-labelled hires lack a referrer link (M-A9n) | Active |
+| DEC-018 | 2026-11-24 | **Uncertainty.** Wilson intervals removed from main reporting (no valid sampling interpretation justified). Report observed rates, definition sensitivity (variant rows) and single-record sensitivity (`single_record_pp`). | PM-approved (Phase 2.2) | Keep Wilson intervals; bootstrap intervals; intervals in an appendix | Snapshot treated as the complete record; repeat candidates break independence (ASM-014) | Active |
+| DEC-019 | 2026-11-24 | **Dates.** Neither the Interviews/Offers tables nor the Application copied fields are universally authoritative. Both are retained; copy-vs-source **contradictions** (DQ-15) and **impossible chronology** (DQ-13) are flagged separately; stage lags are reported under both sources (M-T2 source/copy rows). | PM-approved (Phase 2.2) | Source tables authoritative (old DEC-015); copies authoritative; per-record "most consistent side" rule | In 12/16 disagreements the source record breaks chronology and the copy does not (Phase 2.1 RV-03) | Active. **Supersedes DEC-015** |
+| DEC-020 | 2026-11-24 | **Snapshot dates.** Extraction date = 2026-11-24. Apparent bulk-import timestamp = 2026-08-27 16:39–16:40 UTC. Neither is claimed as the business reporting cutoff. 2026-08-27 is used as a **provisional cutoff** for ages, with sensitivity at 2026-08-30 and 2026-11-24 wherever a result depends on it (M-B3, DQ-07, DQ-12, DQ-28, M-K). | PM-approved (Phase 2.2) | Extraction date as cutoff; latest Created On (2026-08-30) as cutoff | All createdTime within one minute (DQ-22); 3 Created On values after the import date; customer question C-01 | Active. **Supersedes DEC-010** |
+| DEC-021 | 2026-11-24 | **Funnel.** Keep the full-snapshot funnel. Add a completed-cohort funnel for applications 2025-07-01..2026-03-31 only after verifying sufficiency; document eligibility and exclusion rules. | PM-approved (Phase 2.2) | Full funnel only; closed-only funnel as primary | Snapshot mixes maturities; 50/105 Active applications stalled (DQ-28) | Active. Sufficiency verified; rules in DEC-022 |
+| DEC-023 | 2026-11-24 | Approve factual corrections supported by independent evidence; do not approve unsupported interpretations automatically. Classification of Phase 2.1 corrections P1–P13 in `outputs/phase2_2_correction_report.md`. | PM-approved (Phase 2.2) | Approve all P1–P13 as proposed | Phase 2.1 review | Active |
+
+## B. Analyst proposals (not PM-approved)
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-010 | 2026-11-24 | Analysis as-of date = 2026-08-27 (bulk-import createdTime; latest Applied On). | Analyst proposal | Extraction date; 2026-08-30 *(alternatives recorded retrospectively)* | Rationale was incomplete: ignored 3 later Created On values (Phase 2.1 RV-06) | **Superseded by DEC-020** |
+| DEC-011 | 2026-11-24 | Hire = Application Stage 'Hired' (identical to the Accepted-offer set, 26/26). Hire date = Offers.Decision On. | Analyst proposal, pending PM ratification in D3 | Hire date = Closed On (REJ-006); = Proposed Start Date; hire = started employee (no data) | M-H0 26/26; Closed On precedes acceptance in 17/26 (DQ-18). Assumes accepted offer = hire (ASM-020) | Proposed |
+| DEC-014 | 2026-11-24 | Offer acceptance primary definition = Accepted / (Accepted + Declined); scenarios reported alongside. | Analyst proposal | M-B0, M-B3, M-B4 | Pending is not a rejection | **Superseded by DEC-016** (PM adopted it provisionally, with labelling rules) |
+| DEC-015 | 2026-11-24 | Durations use only source-of-truth tables (Interviews, Offers); records with impossible dates excluded and counted. | Analyst proposal | — (none recorded at the time) | Contradicted by evidence (Phase 2.1 RV-03) | **Superseded by DEC-019** |
+| DEC-022 | 2026-11-24 | Completed-cohort rules. **Eligible** = Applied On 2025-07-01..2026-03-31 AND (Status Closed OR Active with no recorded activity for >90 days before the provisional cutoff, i.e. stalled, kept at furthest evidence stage). **Excluded** = Active with activity in the last 90 days (in flight). **Sufficiency criteria** (set by analyst before inclusion, not pre-registered before seeing the data): ≥100 eligible applications and ≥10 offers. Result: 134 eligible, 0 excluded, 16 offers, 12 hires → sufficient. | Analyst proposal, needs PM ratification | Closed-only cohort (drops 35 stalled applications); shorter window (2025-Q4..2026-Q1) | M-K-eligible, M-K-stalled-*; threshold 90 days is ASM-021. Cohort is unchanged at both sensitivity cutoffs | Proposed |
+
+## C. Analyst process decisions (no metric impact)
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-006 | 2026-11-24 | Local git pre-commit hook blocks commits containing `.env`, raw/processed data, or Airtable PAT-shaped strings. | Analyst process | `.gitignore` only | Defence-in-depth (`git add -f`, pasted token); hardened after INV-001 | Active — local hook, not versioned |
+| DEC-012 | 2026-11-24 | data/raw/*.json made read-only (chmod a-w); loader verifies SHA-256 on every load. | PM instruction (implemented): "treat data/raw as immutable" | Checksum check only | Enforces raw immutability | Active |
+| DEC-013 | 2026-11-24 | Personal/free-text fields never written to outputs/*.csv|md; test enforces it. | PM instruction (implemented): "keep customer-level data local" | Hashing/pseudonymising values | Outputs stay shareable | Active |
+| DEC-024 | 2026-11-24 | Free-text numbers in reports are checked by test: every "x/y" fraction in the Phase 2 markdown reports must appear as a numerator/denominator in a generated CSV; traceability references are validated against the outputs and logs. | Analyst process | Manual review only (failed: Phase 2.1 RV-01) | Prevents hand-typed numbers drifting from data | Active |
+
+## D. Phase 3 product decisions (PM-agent proposals, awaiting PM approval)
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-025 | 2026-11-24 | **Claim A (D1):** the 26.9% figure is accepted as Source-as-recorded hire share. Job-board integration is **deferred pending validation** (not Q3). Build B3 to measure intake method and friction; decide at Q4 planning. | Proposal, awaiting PM approval | Build a connector now (VP request); drop permanently; run a friction study without a build | 236/350 applications at 2.7%–3.4% yield, the lowest under every attribution (M-A5, M-A7*); friction unmeasured (C-12); cost unestimated | Proposed |
+| DEC-026 | 2026-11-24 | **Claim B (D1):** "build differently". Fix the offer lifecycle and reporting (B1); do not build acceptance-improvement tooling. | Proposal, awaiting PM approval | Acceptance-improvement tooling (N2); a dashboard only, with no status model; do nothing | 4/5 Pending carry decision dates (DQ-06); 72.2% vs 83.9% is a definition gap (M-B0, M-B1); 5 declines; no benchmark | Proposed |
+| DEC-027 | 2026-11-24 | **Q3 builds (D2):** B1 offer lifecycle integrity (2.5), B2 pipeline hygiene (2.0), B3 attribution integrity (1.5) = **6.0 engineer-weeks** of PM planning estimates; committed scope is flags, queues and validation only; cut line defined. | Proposal, awaiting PM approval; estimates need engineering validation (DEC-008) | Other combinations of the 8 scored candidates; job board plus B1 | `phase3_prioritisation_scores.csv`: top 3 stable under 3 weighting schemes | Proposed |
+| DEC-028 | 2026-11-24 | **Non-builds (D2):** N1 job-board integration (defer, Q4 decision), N2 offer-acceptance improvement tooling, N3 referral programme features; each with reconsideration criteria. X1 and X2 go to the backlog. | Proposal, awaiting PM approval | Fund N1 instead of B2+B3; fund N3 on the as-recorded Referral rate | M-A9n 7/7 unlinked Referral hires; DQ-25; C-12 | Proposed |
+| DEC-029 | 2026-11-24 | **D3 metric spec:** OAM-01 Decided Offer Acceptance Rate (offer-level; Status authoritative; Pending excluded and flagged; latest offer per application; prior-hire offers included and flagged; period by Decision On); supporting OAM-02 to OAM-12. Formalises DEC-016. | Proposal, awaiting PM ratification | Period by Offered On; reclassify conflicting Pending as decided; exclude prior-hire offers by default | `offer_acceptance_metric_spec.md`; reference implementation reconciles to M-B0, M-B1, M-B4, M-B10 | Proposed; amended by DEC-033 |
+| DEC-030 | 2026-11-24 | **Small-sample display rule:** a rate is displayed only when its denominator is at least 10; otherwise counts are shown (ASM-025). | Proposal, awaiting PM approval | n ≥ 5; n ≥ 20; always show | At n < 10, one record moves a rate by more than 10 percentage points | **Superseded by DEC-034** (Phase 3.1) |
+| DEC-031 | 2026-11-24 | **Prioritisation framework:** 7 criteria with written anchors and weights (value 0.20, evidence 0.20, impact 0.15, time to value 0.10, effort 0.15, delivery risk 0.10, dependency risk 0.10), with equal-weight and no-effort sensitivity. | Proposal, awaiting PM approval | RICE (reach unmeasurable for one customer); unweighted voting | Transparent and reproducible (`src/phase3_plan.py`) | Proposed |
+
+## E. Phase 3.1 review decisions (PM-agent proposals, awaiting PM approval)
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-032 | 2026-11-24 | **B1 offer lifecycle model** (`src/offer_lifecycle.py`): 7 statuses; 8 allowed transitions, each with permitted roles, the business date it records and whether a reason is required; Accepted is terminal except renege (Withdrawn) or rescission; no transition back to Pending; field invariants make a Pending offer with a resolution date unsavable; every change is an append-only event (business_date + recorded_at, actor, role, reason); audited corrections by the recruiting-ops lead only; legacy conflicts flagged, never rewritten. | Proposal, awaiting PM approval | A free-form status field with validation only; allowing reopening to Pending; letting Superseded apply to decided offers | Applied to the snapshot, the invariants flag exactly the 4 DQ-06 offers (E-B1-1) | Proposed. Phase 3.2: roles are proposals; the Acme role mapping is an unresolved customer dependency (C-17, ASM-031) |
+| DEC-033 | 2026-11-24 | **D3 consistency amendments:** status is evaluated **as of** the as-of date (an offer decided after as-of counts as Pending at as-of); a reneged or rescinded-after-acceptance offer keeps its Accepted decision in OAM-01 and is counted in OAM-13; Expired, Withdrawn-before-decision and Rescinded-before-decision are excluded from OAM-01 and counted in OAM-06x; only the latest offer per application counts, and Superseded is excluded from every metric; OAM-02 cohorts by Offered On, OAM-01 by Decision On. Amends DEC-029. | Proposal, awaiting PM approval | Use current status regardless of as-of; count reneges as declines; count every revision as a separate decision | The Phase 3 reference code dropped decided-after-as-of offers from both decided and pending; fixed with 0 impact on the snapshot (E-D3-1) | Proposed |
+| DEC-034 | 2026-11-24 | **Display rules, two separate rules.** *Reliability:* n < 10 shows counts only; 10 ≤ n < 30 shows the rate with a low-sample label giving the one-record swing; n ≥ 30 shows the rate. *Privacy:* breakdown cells (department, level, period, decline reason) with any count below 5 are hidden from viewers without record-level offer access. Supersedes DEC-030. | Proposal, awaiting PM approval; privacy threshold needs privacy/legal confirmation | Single threshold of 10; threshold of 20; no privacy rule (users are recruiters) | One record moves a rate by more than 10 points at n < 10 and more than 3.3 points at n < 30; reliability and privacy protect different things | Proposed. Phase 3.2: k is a configurable parameter (default 5); a proposed policy requiring Acme privacy/legal approval (C-18), not a regulatory requirement |
+| DEC-035 | 2026-11-24 | **B2 inactivity rules:** threshold configurable per stage at org level (default 90 days, range 14–365, changes audited); the flag is labelled "Inactive > N days" and is never called abandoned; "abandoned" exists only as a recruiter-confirmed disposition; opening-status contradictions create review flags only, and the system never writes an application or opening status. The 20-application pilot is retained with its stop condition. | Proposal, awaiting PM approval | A fixed 90-day threshold; auto-close after the threshold (conditional, C-11) | Inactivity share is highly threshold-sensitive: 93/105 at 30 days, 50/105 at 90 and 29/105 at 180 (E-B2-*) | Proposed. Phase 3.2: 90 days is the provisional default for every stage; per-stage configuration implemented in `src/inactivity.py` |
+| DEC-036 | 2026-11-24 | **B3 source intelligence:** acquisition source (a controlled taxonomy chosen by the recruiter, with detail for Job Board, Agency and Other) is separate from intake method (system-derived from the creation path, never chosen); referral attribution is either direct (Employee Referral plus a referrer) or an endorsement (another source plus a confirmed referrer), reported separately; the duplicate warning matches on name AND phone, is warning-only, never merges, records the recruiter's decision, and remembers "different person" pairs; the duplicate warning (B3.2 + B3.3b, 0.5) is the first scope cut. | Proposal, awaiting PM approval | Recruiter-selected intake method; fuzzy name matching; auto-merge | Snapshot: the warning fires on exactly the 6 DQ-02 groups and on 0 name-only or phone-only collisions (E-B3-dup-*); legacy applications would be 3 direct referrals and 24 endorsements (E-B3-src-*) | Proposed |
+| DEC-037 | 2026-11-24 | **Delivery model:** 6.0 engineer-weeks delivered as 2 engineers × 3 one-week sprints under the stated assumptions (ASM-026, ASM-027); all figures are PM planning estimates until engineering validates them; if the assumptions fail, scope is cut along the cut line, never stretched. | Proposal, awaiting engineering validation | 1 engineer × 6 weeks; 3 engineers × 2 weeks | `q3_roadmap.md` §0 | Proposed |
+
+## F. Phase 3.2 PM decisions
+
+| ID | Date | Decision | Approval | Alternatives considered | Evidence / rationale | Status |
+|---|---|---|---|---|---|---|
+| DEC-038 | 2026-11-24 | **Renege treatment.** The primary acceptance metric (OAM-01) measures whether an offer was accepted **at the decision event**. A later candidate withdrawal (renege) or company rescission does not erase that acceptance. Post-acceptance events are measured separately (OAM-13a reneging, OAM-13b rescission). Metrics are computed from event-time state at the as-of date, never from the latest status. | **PM-approved** (Phase 3.2 instruction) | Count reneges as declines; exclude reneges from OAM-01 | OAM-01 measures the candidate's decision; post-acceptance attrition is a different outcome. Reference implementation: `event_state` in `src/offer_metrics.py`; snapshot values unchanged | Active |
+
+## G. Decision readiness (Phase 3.2): which proposals can be approved now
+
+Statuses above are unchanged: every DEC-025 to DEC-037 remains **Proposed** until the PM approves it.
+
+| Decision | Can the PM approve now? | Needs Acme input | Needs engineering input |
+|---|---|---|---|
+| DEC-025 Claim A: defer job-board integration; build measurement | **Yes** | C-12 only for the Q4 revisit, not for approval | — |
+| DEC-026 Claim B: build differently (B1); no acceptance-improvement tooling | **Yes** | — | — |
+| DEC-027 Three builds, 6.0 engineer-weeks | Scope yes; **allocation needs validation** | — | Estimate validation (ASM-022) |
+| DEC-028 Three non-builds | **Yes** | — | — |
+| DEC-029 D3 specification | **Yes, provisionally** (core definition) | C-08 (prior-hire default), C-15 (hire meaning), C-03 (expiry) refine it | — |
+| DEC-031 Prioritisation framework | **Yes** | — | — |
+| DEC-032 Offer lifecycle model | Model yes; **permissions no** | C-17 (role mapping) | Event-log and schema feasibility |
+| DEC-033 D3 event-time consistency | **Yes** (consistent with DEC-038) | — | — |
+| DEC-034 Reliability tiers + proposed privacy policy | Reliability tiers **yes**; privacy k **no** | C-18 (privacy/legal) | — |
+| DEC-035 B2 inactivity rules (provisional 90-day default per stage) | **Yes** (default stays provisional) | C-11 informs later defaults; Pilot 1 | — |
+| DEC-036 B3 source taxonomy, referral rules, warning-only duplicates | Rules yes; **intake-method derivation needs confirmation** | C-04 for the legacy back-fill only | Creation-path availability (ASM-029) |
+| DEC-037 Delivery model (2 engineers × 3 sprints) | **No** | — | Engineering manager (ASM-026, ASM-027) |
+| DEC-022 Completed-cohort rules | **Yes** | — | — |
+| DEC-011 Hire definition | Provisionally | C-15 | — |
+
+## Rejected assumptions
+
+| ID | Assumption | Why rejected | Date |
+|---|---|---|---|
+| REJ-001 | The VP's figures (26.9% job-board share of hires; ~72% offer acceptance) are correct as stated. | Must be tested; definitions (hire, source attribution, acceptance denominator) are unstated. | 2026-11-24 |
+| REJ-002 | The Airtable `Findings` table is ground truth. | Treated as claims to reconcile against raw tables. | 2026-11-24 |
+| REJ-003 | The base contains only Acme Corp data. | *Reclassified in Phase 2.2:* not disproven, only unverified (no tenant field). Tracked as the open assumption ASM-010; listed here only for history. | 2026-11-24 |
+| REJ-004 | `Candidates.Source` is a reliable channel attribution. | Contradicts Referred By on 34/350 applications (DQ-01); differs within duplicate pairs (DQ-02). Source as recorded is still the *reported* primary (DEC-017), labelled as such. | 2026-11-24 |
+| REJ-005 | Applications' date fields (Offered On, First Interview On) are live lookups. | Returned as scalars and drift from their sources (DQ-15). | 2026-11-24 |
+| REJ-006 | `Applications.Closed On` is the hire date. | Precedes offer acceptance in 17/26 hires (DQ-18) and the decision in 4/5 declines (DQ-26). | 2026-11-24 |
+| REJ-007 | Airtable `createdTime` reflects business events. | All 892 records created within 1 minute (DQ-22). | 2026-11-24 |
+| REJ-008 | The People table contains hires. | Contains 14 staff (Recruiter/Interviewer/Hiring Manager) only. | 2026-11-24 |
+| REJ-009 | A high share of hires justifies channel investment. | Share is not yield: Job Board 67.4% of applications, 2.7–3.4% hire rate per application across attributions (M-A5, M-A7*). | 2026-11-24 |
+| REJ-010 | Interviews/Offers tables are more reliable than Application copied dates (ASM-015). | Contradicted in 12/16 disagreements (DQ-15 detail); DEC-019. | 2026-11-24 |
+| REJ-011 | Referral is a proven high-performing channel. | 7/7 Referral-labelled hires lack a referrer link (M-A9n); 4 of them belong to 2 candidates (DQ-04). DEC-017. | 2026-11-24 |

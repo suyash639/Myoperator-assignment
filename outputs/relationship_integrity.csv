@@ -1,0 +1,15 @@
+relationship,back_link,source_records,links,expected_cardinality,cardinality_observed,cardinality_violations,orphans,asymmetric,reverse_unmatched,reverse_orphans,status,evidence
+Applications.Candidate -> Candidates,Candidates.Applications,350,350,exactly 1,1 link(s): 350,0,0,0,0,0,PASS,
+Applications.Opening -> Job Openings,Job Openings.Applications,350,350,exactly 1,1 link(s): 350,0,0,0,0,0,PASS,
+Applications.Recruiter -> People,People.Applications as Recruiter,350,350,exactly 1,1 link(s): 350,0,0,0,0,0,PASS,
+Applications.Referred By -> People,People.Referrals Made,350,27,0..1,0 link(s): 323; 1 link(s): 27,0,0,0,0,0,PASS,
+Interviews.Application -> Applications,Applications.Interviews,160,160,exactly 1,1 link(s): 160,0,0,0,0,0,PASS,
+Interviews.Interviewer -> People,People.Interviews,160,160,exactly 1,1 link(s): 160,0,0,0,0,0,PASS,
+Offers.Application -> Applications,Applications.Offers,36,36,exactly 1,1 link(s): 36,0,0,0,0,0,PASS,
+Job Openings.Department -> Departments,Departments.Job Openings,24,24,exactly 1,1 link(s): 24,0,0,0,0,0,PASS,
+Job Openings.Recruiter -> People,People.Reqs as Recruiter,24,24,exactly 1,1 link(s): 24,0,0,0,0,0,PASS,
+Job Openings.Hiring Manager -> People,People.Reqs as Hiring Manager,24,24,exactly 1,1 link(s): 24,0,0,0,0,0,PASS,
+People.Department -> Departments,Departments.People,14,14,exactly 1,1 link(s): 14,0,0,0,0,0,PASS,
+Candidates without any Application,,300,,>=1,,0,0,0,0,0,PASS,
+Candidates referenced by Applications but missing from snapshot,,300,,0 missing,,0,0,0,0,0,PASS,
+Job Openings without any Application,,24,,>=0 (informational),,0,0,0,0,0,INFO,0 openings with zero applications

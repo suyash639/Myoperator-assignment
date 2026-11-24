@@ -1,0 +1,19 @@
+trace_id,finding,evidence,metric_ids,assumption_ids,decision_ids,initiative,success_metric_ids,customer_questions,what_evidence_does_not_prove
+T-01,Pending offers carry decision dates; no terminal states beyond Accepted/Declined,DQ-06;DQ-07;DQ-08,M-B0;M-B1;M-B2;M-B3;OAM-03;OAM-03c;OAM-04-max,ASM-007;ASM-023,DEC-026;DEC-027;DEC-029,B1,SM-B1-1;SM-B1-2;SM-B1-4;SM-B1-G1,C-02;C-03,That recruiters experience it as pain; the true outcomes of the 5 offers
+T-02,VP's 72% is the all-issued ratio; decided-offer rate is 83.9%,DQ-06,M-B0;M-B1;OAM-01;OAM-02,ASM-020;ASM-025,DEC-016;DEC-026;DEC-029;DEC-030,B1,SM-B1-3;SM-B1-G2,C-13;C-15,That acceptance is good or bad (no benchmark)
+T-03,Offers to already-hired candidates inside the decided denominator,DQ-29,M-B9;M-B10;OAM-01b,ASM-020,DEC-029,B1,SM-B1-3,C-08,Whether these are internal moves
+T-04,Declines are few; reasons are single categories,DQ-25,OAM-06;M-B6-Counter Offer;M-B7-Accepted,ASM-016,DEC-026;DEC-028,N2,,C-09;C-13,Why candidates decline
+T-05,Stalled Active applications,DQ-28,M-FCc-hired;M-K-eligible,ASM-021;ASM-017;ASM-024,DEC-027,B2,SM-B2-1;SM-B2-2;SM-B2-G1,C-11;C-01,That applications are abandoned rather than tracked elsewhere; cutoff-sensitive
+T-06,Requisition status contradicts applications; Active applications on Filled openings,DQ-11;DQ-12;DQ-28,M-DF-Engineering-hired,ASM-023,DEC-027,B2,SM-B2-3;SM-B2-4,C-11;C-06,How Acme maintains statuses
+T-07,Closed On precedes the offer decision,DQ-18;DQ-26,M-T0,ASM-020,DEC-011;DEC-027,B2,SM-B2-G1,C-06,What Closed On means
+T-08,Source contradicts Referred By; Referral hires unlinked,DQ-01,M-A0;M-A2;M-A9;M-A9n;M-A7s-Job Board,ASM-011;ASM-013,DEC-017;DEC-025;DEC-027,B3,SM-B3-1;SM-B3-2;SM-B3-G1,C-04,Which field is correct
+T-09,Probable duplicate candidate identities,DQ-02;DQ-03;DQ-04,M-A1;M-A4;M-A8;M-A10,ASM-008;ASM-012,DEC-027,B3,SM-B3-4,C-07,That pairs are the same people
+T-10,"Job boards: high volume, lowest yield; friction unmeasured",DQ-01,M-A5;M-A0;M-A7-Job Board;M-A7s-Job Board;M-A7m-Job Board;M-A7f-Job Board;M-Q2-Job Board,ASM-013;ASM-019,DEC-025;DEC-028,N1,SM-B3-3,C-12;C-04,That integration would not help: the friction it would remove is unmeasured
+T-11,Referral appears strong only as labelled,DQ-01;DQ-04,M-A7-Referral;M-A9n;M-A7s-Referral (linked),ASM-011,DEC-017;DEC-028,N3,SM-B3-1,C-04,That referrals are weak: linked sample is small
+T-12,Interview capture possibly incomplete; feedback latency unmeasurable,DQ-16;DQ-24,M-I0;M-T2-Offer -> decision,ASM-009,DEC-031,X1 (backlog),,C-05,Size of the scheduling problem
+T-13,Department samples too small,DQ-11,M-T1-Product;M-DF-Engineering-hired;OAM-07-Data,ASM-018;ASM-025,DEC-030;DEC-031,X2 (backlog),,C-10,Department differences
+T-15,No auditable offer lifecycle; contradictory status/date combinations possible,DQ-06;DQ-07;DQ-08,OAM-03c;OAM-12,ASM-030,DEC-032;DEC-033,B1,SM-B1-1;SM-B1-G3,C-02;C-03,Which roles Acme wants to own each transition
+T-16,Small samples and individual-level visibility in breakdowns,DQ-04,OAM-07-Data;OAM-08-2026-H1;OAM-06-reason-Counter Offer,ASM-025;ASM-028,DEC-034,B1,SM-B1-3,C-14,The privacy threshold Acme/legal require
+T-17,Inactivity is threshold-sensitive and is not abandonment,DQ-28,M-K-eligible,ASM-021;ASM-024,DEC-035,B2,SM-B2-5,C-11,That flagged applications are abandoned
+T-18,Acquisition source and intake method are conflated; referrals unlinked,DQ-01;DQ-02,M-A9n;M-A9r,ASM-029;ASM-008,DEC-036,B3,SM-B3-G2;SM-B3-G3,C-04;C-07,Which channel is right for legacy records
+T-14,Effort figures are planning estimates,,,ASM-022;ASM-026;ASM-027,DEC-008;DEC-027;DEC-037,B1;B2;B3,,,That scope fits 6.0 engineer-weeks: engineering validation required

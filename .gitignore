@@ -1,0 +1,54 @@
+# ============================================================
+# TalentFlow / Acme Corp analysis — ignore rules
+# Principle: credentials and customer-level data never enter git.
+# ============================================================
+
+# --- Credentials & secrets ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- Python / tooling ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# --- Raw & processed customer data (local only) ---
+# Directory placeholders are kept so the structure is reproducible.
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# --- Logs (may contain record IDs / request metadata) ---
+logs/*
+!logs/.gitkeep
+
+# --- Record-level outputs (customer PII) ---
+# Aggregate outputs in outputs/ are committable; anything record-level goes here.
+outputs/private/*
+!outputs/private/.gitkeep
+
+# --- Session files ---
+# Raw, unredacted session transcripts stay local; only a reviewed,
+# redacted copy is placed in transcripts/ for submission.
+transcripts/raw/
+*.jsonl
+.claude/settings.local.json
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Public submission staging (separate git repo; never part of this working repo) ---
+release/

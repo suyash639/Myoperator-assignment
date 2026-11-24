@@ -1,0 +1,27 @@
+evidence_id,check,numerator,denominator,phase2_2_ref,expected_match,detail
+E-B1-1,"Legacy offers violating the B1 invariants (flagged, not modified)",4,36,DQ-06;OAM-03c,4 (the Pending offers with a Decision On),OFF-00020: Pending offer carries a resolution date: decision_on; OFF-00013: Pending offer carries a resolution date: decision_on; OFF-00007: Pending offer carries a resolution date: decision_on; OFF-00002: Pending offer carries a resolution date: decision_on
+E-B1-2,Pending offers violating the 'no resolution date' invariant,4,5,DQ-06,4/5,
+E-B1-3,Applications with more than one offer (revisions/superseded today),0,36,R4-offers-per-app,0/36,
+E-D3-1,Decided offers with Decision On after the provisional cutoff (pending at as-of),0,31,OAM-01,0 (so OAM-01 stays 26/31),
+E-B2-30,Active applications with no recorded activity for more than 30 days at 2026-08-27,93,105,,,
+E-B2-60,Active applications with no recorded activity for more than 60 days at 2026-08-27,71,105,,,
+E-B2-90,Active applications with no recorded activity for more than 90 days at 2026-08-27,50,105,DQ-28,50/105,
+E-B2-120,Active applications with no recorded activity for more than 120 days at 2026-08-27,43,105,,,
+E-B2-180,Active applications with no recorded activity for more than 180 days at 2026-08-27,29,105,,,
+E-B2-cfg,Active applications flagged with the per-stage config at the provisional default (90 days every stage),50,105,DQ-28,50/105,
+E-B2-cfg-applied60,"Same, with only the Applied stage overridden to 60 days (other stages 90)",54,105,,,
+E-B2-stage-Applied,Active at stage Applied inactive > 90 days,27,45,DQ-28,,
+E-B2-stage-Interview,Active at stage Interview inactive > 90 days,6,23,DQ-28,,
+E-B2-stage-Offer,Active at stage Offer inactive > 90 days,2,5,DQ-28,,
+E-B2-stage-Screening,Active at stage Screening inactive > 90 days,15,32,DQ-28,,
+E-B2-req,Openings with a status contradiction -> review flags (never auto-corrected),15,24,DQ-11,15/24,Flag types: Filled/Cancelled with Active applications: 9; Cancelled with hires: 2; hires exceed headcount: 4; Open although hires >= headcount: 5; Filled with fewer hires than headcount: 2
+E-B3-dup-1,Name+phone groups the warning would fire on,6,300,DQ-02,6 groups / 12 records,CAND-00010/CAND-00009; CAND-00012/CAND-00011; CAND-00001/CAND-00002; CAND-00005/CAND-00006; CAND-00007/CAND-00008; CAND-00004/CAND-00003
+E-B3-dup-2,Name-only collision groups that would NOT warn (beyond name+phone groups),0,300,R2-name-only,0,
+E-B3-dup-3,Phone-only collision groups that would NOT warn (beyond name+phone groups),0,300,R2-name-only,0,
+E-B3-src-direct referral,Legacy applications classified as 'direct referral' under the new referral rules (not rewritten),3,350,DQ-01,,
+E-B3-src-endorsement,Legacy applications classified as 'endorsement' under the new referral rules (not rewritten),24,350,DQ-01,,
+E-B3-src-non-referral,Legacy applications classified as 'non-referral' under the new referral rules (not rewritten),313,350,DQ-01,,
+"E-B3-src-referral label, no referrer (needs review)","Legacy applications classified as 'referral label, no referrer (needs review)' under the new referral rules (not rewritten)",10,350,DQ-01,,
+E-B3-hire-endorsement,Hires classified as 'endorsement' under the new referral rules,3,26,M-A9n;M-A9r,,
+E-B3-hire-non-referral,Hires classified as 'non-referral' under the new referral rules,16,26,M-A9n;M-A9r,,
+"E-B3-hire-referral label, no referrer (needs review)","Hires classified as 'referral label, no referrer (needs review)' under the new referral rules",7,26,M-A9n;M-A9r,,
